@@ -7,11 +7,11 @@ body {
     background-image: url(images/bgimg.png);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
+    height: 167px;
     color: whitesmoke;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 h1, h3 {
@@ -24,13 +24,28 @@ h1 {
 
 .menu-entry {
     border-bottom: 1px solid lightgray;
-    /* padding: 36px;  */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #menu {
     padding: 80px 50px;
 }
 
+.menu-entry-info {
+    display: flex;
+}
+
 .menu-entry-emoji {
     font-size: 60px;
+    border: 1px solid pink;
+    align-items: flex-end;
 }
+
+.menu-entry-button {
+    border: 1px solid lightgray;
+    height: 60px;
+    width: 60px;
+}
+
