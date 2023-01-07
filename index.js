@@ -7,18 +7,30 @@ function getMenuHtml(menu) {
     let menuHtml = ''
 
     for(let entry of menu) {
-        console.log(entry)
+
+        let ingredientsList = ''
+
+        let ingredientsArray = entry.ingredients
+
+        for (let i=0; i<ingredientsArray.length; i++) {
+            if (i === ingredientsArray.length-1) {
+                ingredientsList += `${ingredientsArray[i]}` 
+            } else {
+                ingredientsList += `${ingredientsArray[i]}, ` 
+            }
+        }
+
         menuHtml += `
         <div class="menu-entry">
             <div class="menu-entry-info">
                 <p class="menu-entry-emoji">${entry.emoji}</p>
                 <div class="menu-entry-text">
                     <h2>${entry.name}</h2>
-                    <p>Ingredients placeholder</p>
-                    <p>$${entry.price}</p>
+                    <p class="menu-ingredients-text">${ingredientsList}</p>
+                    <h3>$${entry.price}</h3>
                 </div>
             </div>
-            <div class="menu-entry-button"></div> 
+            <div class="menu-entry-button">+</div> 
         </div>
         `
     }
