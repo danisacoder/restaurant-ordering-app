@@ -1,5 +1,7 @@
 import { menuArray } from '/data.js'
 
+// Building the menu structure
+
 let menuHtmlDiv = document.getElementById('menu') 
 
 function getMenuHtml(menu) {
@@ -30,7 +32,7 @@ function getMenuHtml(menu) {
                     <h3>$${entry.price}</h3>
                 </div>
             </div>
-            <div class="menu-entry-button">+</div> 
+            <div id="${entry.name}" class="menu-entry-button">+</div> 
         </div>
         `
     }
@@ -40,3 +42,48 @@ function getMenuHtml(menu) {
 }
 
 getMenuHtml(menuArray)
+
+// Adding menu items to the cart array
+
+let cartArray = []
+
+let buttonsArray = document.querySelectorAll('.menu-entry-button')
+
+console.log(buttonsArray)
+
+buttonsArray.forEach(function(button) {
+    button.addEventListener('click', function(){
+        cartArray.push(this.id)
+        cartDisplayCheck()
+        populateCart(cartArray)
+    })
+})
+
+// Displaying menu on page
+
+let cartHtmlDiv = document.getElementById('cart-container')
+
+function cartDisplayCheck() {
+
+    if (cartArray === []) {
+        cartHtmlDiv.style.display = 'none'
+    } else {
+        cartHtmlDiv.style.display = 'inline'
+    }
+
+}
+
+let cartContents = document.getElementById('cart-contents')
+
+function populateCart(cartArray) {
+    
+    let cartHtml = ''
+
+    for (let item of cartArray) {
+        cartHtml += `<div>${item}</div>`
+    }
+
+    cartContents.innerHTML = cartHtml
+
+}
+

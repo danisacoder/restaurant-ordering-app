@@ -95,3 +95,20 @@ p {
     color: #8B8B8B;
 }
 
+#cart-container {
+    display: none;
+}
+
+.visibility {
+    display: inline;
+}
+
+#cart-button {
+    width: 100px;
+    height: 30px;
+}
+
+#cart {
+    display: flex;
+} 
+
