@@ -4,6 +4,7 @@ body, p, h1, h2, h3 {
     font-family: 'Smythe', cursive;
 } 
 
+
 #header {
     background-image: url(images/bgimg.png);
     background-repeat: no-repeat;
@@ -95,12 +96,13 @@ p {
     color: #8B8B8B;
 }
 
-#cart-container {
-    display: none;
+.cart-container {
+    display: flex;
+    justify-content: center;
 }
 
-.visibility {
-    display: inline;
+.hidden {
+    display: none;
 }
 
 #cart-button {
@@ -108,7 +110,13 @@ p {
     height: 30px;
 }
 
-#cart {
-    display: flex;
+.cart {
+    border: 1px solid black;
+    width: 500px;
 } 
 
+.cart-entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

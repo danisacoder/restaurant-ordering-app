@@ -53,34 +53,54 @@ console.log(buttonsArray)
 
 buttonsArray.forEach(function(button) {
     button.addEventListener('click', function(){
-        cartArray.push(this.id)
+
+        console.log(this.id)
+        
+        for (let item of menuArray) {
+            if (item.name === this.id) {
+                cartArray.push(item)
+                // console.log(item)
+            }
+        }
+
         cartDisplayCheck()
-        populateCart(cartArray)
+        populateCartDiv(cartArray)
+        console.log(cartArray)
     })
 })
 
 // Displaying menu on page
 
-let cartHtmlDiv = document.getElementById('cart-container')
+let cartHtmlDiv = document.querySelector('.cart')
 
 function cartDisplayCheck() {
 
-    if (cartArray === []) {
-        cartHtmlDiv.style.display = 'none'
+    if (cartArray.length === 0) {
+        cartHtmlDiv.classList.add("hidden")
+        console.log("empty cart")
     } else {
-        cartHtmlDiv.style.display = 'inline'
+        cartHtmlDiv.classList.remove("hidden")
+        console.log('wow')
     }
-
 }
+
+cartDisplayCheck()
 
 let cartContents = document.getElementById('cart-contents')
 
-function populateCart(cartArray) {
+function populateCartDiv(cartArray) {
     
     let cartHtml = ''
 
     for (let item of cartArray) {
-        cartHtml += `<div>${item}</div>`
+        cartHtml += `
+        <div class="cart-entry">
+            <div class="cart-item-section">
+                <div class="cart-item-item">${item.name}</div>
+                <div class="cart-remove-link">remove</div>
+            </div>
+            <div class="cart-pricing-section">${item.price}</div>
+        </div>`
     }
 
     cartContents.innerHTML = cartHtml
