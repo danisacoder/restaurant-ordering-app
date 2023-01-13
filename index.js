@@ -23,16 +23,18 @@ function getMenuHtml(menu) {
         }
 
         menuHtml += `
-        <div class="menu-entry">
-            <div class="menu-entry-info">
-                <p class="menu-entry-emoji">${entry.emoji}</p>
-                <div class="menu-entry-text">
-                    <h2>${entry.name}</h2>
-                    <p class="menu-ingredients-text">${ingredientsList}</p>
-                    <h3>$${entry.price}</h3>
+        <div class="menu-entry-container">
+            <div class="menu-entry">
+                <div class="menu-entry-info">
+                    <p class="menu-entry-emoji">${entry.emoji}</p>
+                    <div class="menu-entry-text">
+                        <h2>${entry.name}</h2>
+                        <p class="menu-ingredients-text">${ingredientsList}</p>
+                        <h3>$${entry.price}</h3>
+                    </div>
                 </div>
+                <div id="${entry.name}" class="menu-entry-button">+</div> 
             </div>
-            <div id="${entry.name}" class="menu-entry-button">+</div> 
         </div>
         `
     }
@@ -96,14 +98,20 @@ function populateCartDiv(cartArray) {
         cartHtml += `
         <div class="cart-entry">
             <div class="cart-item-section">
-                <div class="cart-item-item">${item.name}</div>
-                <div class="cart-remove-link">remove</div>
+                <div class="cart-item-food">${item.name}<span class="cart-remove-link">remove</span></div>
             </div>
-            <div class="cart-pricing-section">${item.price}</div>
-        </div>`
+            <div class="cart-item-pricing">$${item.price}</div>
+        </div>
+        `
     }
 
     cartContents.innerHTML = cartHtml
 
 }
+
+let completeOrderButton = document.querySelector('.cart-complete-button')
+
+completeOrderButton.addEventListener('click', {
+    // console.log('completing order')
+})
 
