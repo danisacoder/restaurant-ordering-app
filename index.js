@@ -61,19 +61,22 @@ buttonsArray.forEach(function(button) {
         for (let item of menuArray) {
             if (item.name === this.id) {
                 cartArray.push(item)
-                // console.log(item)
+                console.log(item)
             }
         }
 
         cartDisplayCheck()
         populateCartDiv(cartArray)
         console.log(cartArray)
+        totalTally(cartArray)
+        console.log(removeButtonsArray)
+
     })
 })
 
 // Displaying menu on page
 
-let cartHtmlDiv = document.querySelector('.cart')
+let cartHtmlDiv = document.querySelector('.cart-container')
 
 function cartDisplayCheck() {
 
@@ -82,36 +85,111 @@ function cartDisplayCheck() {
         console.log("empty cart")
     } else {
         cartHtmlDiv.classList.remove("hidden")
-        console.log('wow')
+        establishRemoveButtons(removeButtonsArray)
     }
 }
 
 cartDisplayCheck()
 
+// Rendering cart I think
+
 let cartContents = document.getElementById('cart-contents')
 
-function populateCartDiv(cartArray) {
+function populateCartDiv(arr) {
     
     let cartHtml = ''
 
-    for (let item of cartArray) {
-        cartHtml += `
-        <div class="cart-entry">
-            <div class="cart-item-section">
-                <div class="cart-item-food">${item.name}<span class="cart-remove-link">remove</span></div>
+
+    for (let item of arr) {
+
+        // Checking for multiples and rendering them differently
+
+        const itemCounter = (arr, item) => {
+            let counter = 0
+            arr.forEach(x => {
+                if (x === item) counter++
+            })
+            return counter
+        }
+
+        let count = itemCounter(arr, item)
+
+        let myNodeListArray = Array.from(document.querySelectorAll(`#${item.name}`))
+
+        console.log(myNodeListArray)
+
+        // && myNodeList.includes(`${item.name}`
+
+
+
+        let itemUpdateHtml = ''
+
+        // if (count > 1) {
+
+            // let itemUpdateDiv = document.getElementById(`#${item.id}`)
+
+            // console.log(itemUpdateDiv)
+
+            // itemUpdateHtml += `
+            //         <div class="cart-item-section">
+            //             <div class="cart-item-food" id="${item.id}">${item.name} x${count}<span class="cart-remove-link">remove</span></div>
+            //         </div>
+            //         <div class="cart-item-pricing">$${item.price * count}</div>
+            // `
+
+            // itemUpdateDiv.innerHTML = itemUpdateHtml
+
+        // } else {
+
+            cartHtml += `
+            <div class="cart-entry">
+                <div class="cart-item-section">
+                    <div class="cart-item-food" class="${item.name}" id="${item.id}">${item.name}<span class="cart-remove-link">remove</span></div>
+                </div>
+                <div class="cart-item-pricing">$${item.price}</div>
             </div>
-            <div class="cart-item-pricing">$${item.price}</div>
-        </div>
-        `
+            `
+
+        // }
+
+    // console.log(`${}`)
+
     }
 
     cartContents.innerHTML = cartHtml
 
 }
 
+
+// Tally up the total at the bottom of the cart
+
+let totalHtml = document.querySelector('.total')
+
+function totalTally(array) {
+    
+    let total = 0
+    
+    for(let item of array) {
+    
+        total += item.price
+    
+    }
+
+    totalHtml.innerHTML = `<div class="total">$${total}</div>`
+
+} 
+
+let removeButtonsArray = document.querySelectorAll('.cart-remove-link')
+
+function establishRemoveButtons(array) {
+    console.log(array)
+}
+
+// Complete order functionality 
+
 let completeOrderButton = document.querySelector('.cart-complete-button')
 
-completeOrderButton.addEventListener('click', {
-    // console.log('completing order')
+completeOrderButton.addEventListener('click', function(){
+    console.log('completing order')
 })
 
