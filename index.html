@@ -15,31 +15,56 @@
                 </div>
             </div>
             <div id="menu"></div>
-            <div class="cart-container">
-                <div class="cart hidden">
-                    <div class="cart-header">
-                        <h3>Your order</h3>
-                    </div>
-                    <div id="cart-contents"></div>
-                    <div class="tally-line"></div>
-                    <div class="total-entry">
-                        <div class="total-title">Total price:</div>
-                        <div class="total"></div> 
-                    </div>
-                    <div class="cart-complete-button-container">
-                        <div class="cart-complete-button">Complete order</div> 
-                    </div>
+            <!-- <div class="cart-container"> -->
+            <div class="cart">
+                <div class="cart-header">
+                    <h3>Your order</h3>
+                </div>
+                <div id="cart-contents"></div>
+                <div class="tally-line"></div>
+                <div class="total-entry">
+                    <div class="total-title">Total price:</div>
+                    <div class="total"></div> 
+                </div>
+                <div class="cart-complete-button-container">
+                    <div class="cart-complete-button">Complete order</div> 
                 </div>
             </div>
-            <div id="payment-modal-container">
-                <form>
-                    <label></label>
-                    <input type="text">
-                    <input type="number">
-                    <input type="number">
-                    <input type="submit">
-                </form>
+            <form class="payment-modal hidden">
+                <div id="payment-modal-header"> 
+                    <h3>Enter card details</h3>
                 </div>
+                <input 
+                    id="card-name" 
+                    name="card-name"
+                    type="text" 
+                    placeholder="Enter your name"
+                    required>
+                <input 
+                    id="card-number" 
+                    name="card-number"
+                    type="text" 
+                    placeholder="Enter card number"
+                    pattern="[0-9]{16}"
+                    required
+                    >
+                <input 
+                    id="card-cvv"
+                    name="card-cvv" 
+                    type="text" 
+                    placeholder="Enter CVV"
+                    pattern="[0-9]{3}"
+                    required
+                    >
+                <input 
+                    id="card-submit" 
+                    name="card-submit"
+                    type="button" 
+                    value="Pay"
+                    >
+            </form>
+            <div class="completed-order-message-container">
+                <div class="completed-order-message"></div>
             </div>
         </div>
 	<script src="index.js" type='module'></script>

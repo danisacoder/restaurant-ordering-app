@@ -95,12 +95,12 @@ p {
     color: #8B8B8B;
 }
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */
 
 .cart {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     /* align-items: flex-start; */
@@ -129,7 +129,7 @@ p {
     background-color: #16DB99;   
     width: 500px;
     height: 60px;
-    font-family: 'Verdana', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     display: flex;
     align-items: center;
@@ -142,7 +142,7 @@ p {
 .cart-remove-link {
     padding-left: 8px;
     font-size: 12px;
-    font-family: 'Verdana', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #BBBBBB;
 }
 
@@ -182,30 +182,89 @@ p {
 }
 
 input {
-    border: 1px solid black;
-    border-radius: 2px;
-    font-family: 'Verdana', sans-serif;
-}
-
-#payment-modal-container {
-    max-width: 524px;
-    border: 1px solid black;
-    margin: 0 auto;
+    border: 1px solid #757575;
     border-radius: 4px;
-    box-shadow: ;
-}
-
-#payment-modal-container > form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-
-input {
+    padding: 0 20px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 23px;
     height: 71px;
-    width: 90%;
-    border-radius: 4px;
+    width: 90%;    
+}
 
+.payment-modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    /* align-items: center; */
+    background-color: #FFF;
+    width: 524px;
+    height: 524px;
+    border-radius: 2px;
+    border: 1px solid black;
+    box-shadow: 0 0 200px rgba(0, 0, 0, .75);
+}
+
+/* #payment-modal-container {
+    max-width: 524px;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 4px;
+    position: relative;
+} */
+
+#payment-modal-header {
+    /* border: 1px solid black; */
+    width: 100%;
+    display: inline;
+}
+
+#payment-modal-header > h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 50px 0 60px 110px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#card-submit {
+    background-color: #16DB99;
+    color: #FFF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    margin: 25px 0;
+    width: 475px;
+    height: 71px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.completed-order-message-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.completed-order-message {
+    /* width: 504px; */
+    /* height: 120px; */
+    padding: 40px 60px;
+    background-color: #ECFDF5;
+    color: #065F46; 
+    display: none;
+    font-family: 'Smythe', cursive;
+    font-size: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    margin: 50px;
 }
