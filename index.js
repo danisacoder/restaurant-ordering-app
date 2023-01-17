@@ -10,6 +10,8 @@ function getMenuHtml(menu) {
 
     for(let entry of menu) {
 
+        // generating the ingredient list for each menu item
+
         let ingredientsList = ''
 
         let ingredientsArray = entry.ingredients
@@ -51,9 +53,8 @@ let cartArray = []
 
 let buttonsArray = document.querySelectorAll('.menu-entry-button')
 
-console.log(buttonsArray)
-
 buttonsArray.forEach(function(button) {
+    
     button.addEventListener('click', function(){
 
         console.log(this.id)
@@ -69,7 +70,6 @@ buttonsArray.forEach(function(button) {
         populateCartDiv(cartArray)
         console.log(cartArray)
         totalTally(cartArray)
-        console.log(removeButtonsArray)
 
     })
 })
@@ -91,7 +91,7 @@ function cartDisplayCheck() {
 
 cartDisplayCheck()
 
-// Rendering cart I think
+// Rendering cart contents on page from cart array
 
 let cartContents = document.getElementById('cart-contents')
 
@@ -102,57 +102,16 @@ function populateCartDiv(arr) {
 
     for (let item of arr) {
 
-        // Checking for multiples and rendering them differently
-
-        const itemCounter = (arr, item) => {
-            let counter = 0
-            arr.forEach(x => {
-                if (x === item) counter++
-            })
-            return counter
-        }
-
-        let count = itemCounter(arr, item)
-
-        let myNodeListArray = Array.from(document.querySelectorAll(`#${item.name}`))
-
-        console.log(myNodeListArray)
-
-        // && myNodeList.includes(`${item.name}`
-
-
-
         let itemUpdateHtml = ''
 
-        // if (count > 1) {
-
-            // let itemUpdateDiv = document.getElementById(`#${item.id}`)
-
-            // console.log(itemUpdateDiv)
-
-            // itemUpdateHtml += `
-            //         <div class="cart-item-section">
-            //             <div class="cart-item-food" id="${item.id}">${item.name} x${count}<span class="cart-remove-link">remove</span></div>
-            //         </div>
-            //         <div class="cart-item-pricing">$${item.price * count}</div>
-            // `
-
-            // itemUpdateDiv.innerHTML = itemUpdateHtml
-
-        // } else {
-
-            cartHtml += `
-            <div class="cart-entry">
-                <div class="cart-item-section">
-                    <div class="cart-item-food" class="${item.name}" id="${item.id}">${item.name}<span class="cart-remove-link">remove</span></div>
-                </div>
-                <div class="cart-item-pricing">$${item.price}</div>
+        cartHtml += `
+        <div class="cart-entry">
+            <div class="cart-item-section">
+                <div class="cart-item-food" class="${item.name}" id="${item.id}">${item.name}<span class="cart-remove-link">remove</span></div>
             </div>
-            `
-
-        // }
-
-    // console.log(`${}`)
+            <div class="cart-item-pricing">$${item.price}</div>
+        </div>
+        `
 
     }
 
@@ -160,8 +119,7 @@ function populateCartDiv(arr) {
 
 }
 
-
-// Tally up the total at the bottom of the cart
+// Tally up and populate the total at the bottom of the cart
 
 let totalHtml = document.querySelector('.total')
 
@@ -188,7 +146,6 @@ function establishRemoveButtons(array) {
 // Complete order button functionality 
 
 let completeOrderButton = document.querySelector('.cart-complete-button')
-let payModal = document.querySelector('.payment-modal')
 let completedOrderMessageDiv = document.querySelector('.completed-order-message')
 
 completeOrderButton.addEventListener('click', function(){
@@ -197,17 +154,16 @@ completeOrderButton.addEventListener('click', function(){
 
 // Pay modal functionality
 
+let payModal = document.querySelector('.payment-modal')
 let payButtonElement = document.getElementById('card-submit')
 let cardNameElement = document.getElementById('card-name')
 
-
-
 payButtonElement.addEventListener('click', function() {
+
+    // Parse name string; if submitted name has a space, use the name before the space (so that it says your first name)
+
     let userName = cardNameElement.value 
     let displayName = ''
-
-    // console.log(userName.split(' '))
-
     let nameArray = userName.split(' ')
 
     if (nameArray.length > 1) {
