@@ -85,7 +85,6 @@ function cartDisplayCheck() {
         console.log("empty cart")
     } else {
         cartHtmlDiv.style.display = 'flex'
-        establishRemoveButtons(removeButtonsArray)
     }
 }
 
@@ -99,15 +98,12 @@ function populateCartDiv(arr) {
     
     let cartHtml = ''
 
-
     for (let item of arr) {
-
-        let itemUpdateHtml = ''
 
         cartHtml += `
         <div class="cart-entry">
             <div class="cart-item-section">
-                <div class="cart-item-food" class="${item.name}" id="${item.id}">${item.name}<span class="cart-remove-link">remove</span></div>
+                <div class="cart-item-food" class="${item.name}" id="${item.id}">${item.name}<span class="cart-remove-button">remove</span></div>
             </div>
             <div class="cart-item-pricing">$${item.price}</div>
         </div>
@@ -116,6 +112,7 @@ function populateCartDiv(arr) {
     }
 
     cartContents.innerHTML = cartHtml
+    createRemoveButtons()
 
 }
 
@@ -137,10 +134,20 @@ function totalTally(array) {
 
 } 
 
-let removeButtonsArray = document.querySelectorAll('.cart-remove-link')
+// Add remove button functionality
 
-function establishRemoveButtons(array) {
-    console.log(array)
+function createRemoveButtons() {
+
+    let removeButtonsArray = document.querySelectorAll('.cart-remove-button')
+
+    removeButtonsArray.forEach(buttonTime)
+
+    function buttonTime(button) {
+        button.addEventListener('click', function(){
+            console.log(this)
+        })
+    }
+
 }
 
 // Complete order button functionality 
