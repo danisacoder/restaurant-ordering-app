@@ -1,5 +1,5 @@
 body {
-    min-width: 600px;
+    min-width: 0;
 }
 
 body, p, h1, h2, h3 {
@@ -195,6 +195,8 @@ input {
     border-radius: 2px;
     border: 1px solid black;
     box-shadow: 0 0 200px rgba(0, 0, 0, .75);
+    min-width: 0;
+    padding: 0 15px;
 }
 
 #payment-modal-header {
@@ -209,6 +211,11 @@ input {
     font-size: 24px;
 }
 
+#card-name {
+    align-self: center;
+    min-width: 0;
+}
+
 #card-submit {
     background-color: #16DB99;
     color: #FFF;
@@ -221,6 +228,7 @@ input {
     height: 71px;
     border-radius: 4px;
     margin-bottom: 30px;
+    align-self: center;
 }
 
 .completed-order-message-container {
