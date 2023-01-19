@@ -47,7 +47,7 @@ function getMenuHtml(menu) {
 
 getMenuHtml(menuArray)
 
-// Adding menu items to the cart array
+// Adding menu items to the cart array and displaying the cart in the DOM
 
 let cartArray = []
 
@@ -66,15 +66,12 @@ buttonsArray.forEach(function(button) {
             }
         }
 
-        cartDisplayCheck()
-        populateCartDiv(cartArray)
-        console.log(cartArray)
-        totalTally(cartArray)
+        renderCart()
 
     })
 })
 
-// Displaying menu on page
+// Displaying cart in the DOM when it contains items, removing it from DOM when it is empty
 
 let cartHtmlDiv = document.querySelector('.cart')
 
@@ -82,7 +79,6 @@ function cartDisplayCheck() {
 
     if (cartArray.length === 0) {
         cartHtmlDiv.style.display = 'none'
-        console.log("empty cart")
     } else {
         cartHtmlDiv.style.display = 'flex'
     }
@@ -138,15 +134,35 @@ function totalTally(array) {
 
 function createRemoveButtons() {
 
-    let removeButtonsArray = document.querySelectorAll('.cart-remove-button')
+    let buttons = document.querySelectorAll('.cart-remove-button')
 
-    removeButtonsArray.forEach(buttonTime)
+    buttons.forEach(buttonFun)
 
-    function buttonTime(button) {
+    function buttonFun(button, index) {
+
         button.addEventListener('click', function(){
-            console.log(this)
+
+            cartArray.splice(index, 1)
+            renderCart()
+
         })
     }
+
+
+
+    // let removeButtonsArray = document.querySelectorAll('.cart-remove-button')
+
+    // removeButtonsArray.forEach(buttonTime)
+
+    // function buttonTime(button) {
+    //     button.addEventListener('click', function(){
+    //         // let clickedId = parseInt(this.parentNode.id)
+    //         // console.log(this.parentNode)
+        
+
+            
+    //     })
+    // }
 
 }
 
@@ -165,7 +181,9 @@ let payModal = document.querySelector('.payment-modal')
 let payButtonElement = document.getElementById('card-submit')
 let cardNameElement = document.getElementById('card-name')
 
-payButtonElement.addEventListener('click', function() {
+payButtonElement.addEventListener('click', function(event) {
+
+    event.preventDefault()
 
     // Parse name string; if submitted name has a space, use the name before the space (so that it says your first name)
 
@@ -179,10 +197,14 @@ payButtonElement.addEventListener('click', function() {
         displayName = userName
     }
 
+    // Hide and clear the cart and pay modal
+
     payModal.style.display = 'none'
     cartHtmlDiv.style.display = 'none'
 
     cartHtmlDiv.innerHTML = ''
+
+    // show completed order message
 
     completedOrderMessageDiv.style.display = 'inline'
 
@@ -190,5 +212,19 @@ payButtonElement.addEventListener('click', function() {
     Thanks, ${displayName}! Your order is on its way!
     `
 
+    // Clear the page upon click 
+
+    // setTimeout(function() {
+    //     document.addEventListener('click', function() {
+    //     window.location.reload()
+    //     })
+    // }, 10000)
+
 })
 
+function renderCart() {
+        cartDisplayCheck()
+        populateCartDiv(cartArray)
+        // console.log(cartArray)
+        totalTally(cartArray)
+}

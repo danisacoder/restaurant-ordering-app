@@ -34,33 +34,34 @@
                     <h3>Enter card details</h3>
                 </div>
                 <input 
+                    type="text" 
                     id="card-name" 
                     name="card-name"
-                    type="text" 
                     placeholder="Enter your name"
-                    required>
-                <input 
-                    id="card-number" 
+                    required
+                >
+                <input
+                    type="text"
+                    id="card-number"
                     name="card-number"
-                    type="text" 
                     placeholder="Enter card number"
                     pattern="[0-9]{16}"
                     required
-                    >
+                >
                 <input 
+                    type="text"
                     id="card-cvv"
                     name="card-cvv" 
-                    type="text" 
                     placeholder="Enter CVV"
                     pattern="[0-9]{3}"
                     required
-                    >
+                >
                 <input 
                     id="card-submit" 
                     name="card-submit"
-                    type="button" 
+                    type="submit" 
                     value="Pay"
-                    >
+                > 
             </form>
             <div class="completed-order-message-container">
                 <div class="completed-order-message"></div>
