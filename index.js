@@ -147,23 +147,7 @@ function createRemoveButtons() {
 
         })
     }
-
-
-
-    // let removeButtonsArray = document.querySelectorAll('.cart-remove-button')
-
-    // removeButtonsArray.forEach(buttonTime)
-
-    // function buttonTime(button) {
-    //     button.addEventListener('click', function(){
-    //         // let clickedId = parseInt(this.parentNode.id)
-    //         // console.log(this.parentNode)
-        
-
-            
-    //     })
-    // }
-
+    
 }
 
 // Complete order button functionality 
@@ -214,11 +198,11 @@ payButtonElement.addEventListener('click', function(event) {
 
     // Clear the page upon click 
 
-    // setTimeout(function() {
-    //     document.addEventListener('click', function() {
-    //     window.location.reload()
-    //     })
-    // }, 10000)
+    setTimeout(function() {
+        document.addEventListener('click', function() {
+        window.location.reload()
+        })
+    }, 10000)
 
 })
 
